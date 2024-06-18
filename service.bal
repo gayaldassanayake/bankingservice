@@ -2,11 +2,10 @@ import gayaldassanayake/bankingservice.customers as customers;
 
 import ballerina/http;
 
-# A service representing a network-accessible API
-# bound to port `9090`.
+# A service that provides banking services
 service /abc\-bank on new http:Listener(9090) {
 
-    # A resource for generating greetings
+    # A resource for logging in to the system
     # + username - name as a string
     # + password - password as a string
     # + return - successful login message or error
@@ -20,6 +19,9 @@ service /abc\-bank on new http:Listener(9090) {
         return "Login successfull";
     }
 
+    # A resource for getting customer details
+    # + id - id of the customer as a string
+    # + return - customer details or error
     resource function get customers/[string id]() returns customers:Customer|error {
         return customers:retrieveCustomer(id);
     }
